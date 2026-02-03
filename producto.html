@@ -29,7 +29,6 @@
 
     <div class="h-full flex items-center justify-between">
 
-      <!-- Izquierda: logo + menú -->
       <div class="flex items-center gap-20">
         <a href="/">
           <img id="logo" src="IMG/pngwing.com.png" alt="La Cara B" class="h-28 transition-transform duration-600">
@@ -42,22 +41,19 @@
         </nav>
       </div>
 
-      <!-- Derecha: buscador + carrito -->
       <div class="flex items-center gap-24">
         <input type="text" placeholder="Buscar" class="w-64 bg-transparent border-b-2 border-black text-black text-2xl
                placeholder-black focus:outline-none">
-        <!-- Icono del carrito -->
+
         <button id="carritoBtn" class="text-black hover:text-gray-700">
           <img src="IMG/carrito-de-compras(1).png" alt="Carrito de Compras" class="h-10">
         </button>
         </div>
 
-        <!-- POPUP DEL CARRITO -->
         <div id="carritoPopup" class="hidden fixed top-0 right-0 h-full w-[600px] flex items-start p-4">
           <div class="relative w-full max-w-none border border-gray-600 bg-gray-100 px-4 py-8 sm:px-6 lg:px-8"
             aria-modal="true" role="dialog" tabindex="-1">
 
-            <!-- BOTÓN CERRAR -->
             <button id="cerrarCarrito" class="absolute end-4 top-4 text-gray-600 transition hover:scale-110">
               <span class="sr-only">Close cart</span>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -66,10 +62,8 @@
               </svg>
             </button>
 
-            <!-- CONTENIDO DEL CARRITO -->
             <div class="mt-4 space-y-6">
               <ul id="carritoItems" class="space-y-4">
-                <!-- ITEM 1 -->
                 <li class="flex items-center gap-4">
                   <img src="IMG/VINYL-tomato.webp" alt="" class="w-36 h-36 rounded-sm object-cover">
                   <div>
@@ -94,7 +88,6 @@
                     </button>
                   </div>
                 </li>
-                <!-- Puedes duplicar más items según necesidad -->
               </ul>
 
               <div class="space-y-4 text-center">
@@ -136,7 +129,6 @@
   <footer class="py-4">
     <div class=" mx-10 mb-20 px-6 flex justify-between items-end">
 
-      <!-- LINKS IZQUIERDA -->
       <ul class="space-y-2 text-xl">
         <li><a href="#" class="hover:underline">Sobre Nosotros</a></li>
         <li><a href="#" class="hover:underline">Pedidos y Envíos</a></li>
@@ -144,8 +136,6 @@
         <li><a href="#" class="hover:underline">Términos y Condiciones</a></li>
       </ul>
 
-      <!-- NEWSLETTER DERECHA -->
-      <!-- Contenedor del newsletter -->
       <div class="flex flex-col md:flex-row items-center md:w-1/2 gap-4">
         <input type="email" placeholder="Suscríbete a la Newsletter"
           class="w-full bg-transparent border-b-2 border-black text-black text-2xl placeholder-black focus:outline-none py-2">
@@ -250,12 +240,10 @@ Disponible en formatos CD y LP, el álbum es una profunda inmersión, tierna e i
     }
   };
 
-  // Leer parámetro de la URL
     const params = new URLSearchParams(window.location.search);
-    const viniloID = params.get('vinilo') || 'tomato'; // ejemplo: producto.html?vinilo=tomato
-    const producto = vinilos[viniloID] || vinilos['tomato']; // fallback
+    const viniloID = params.get('vinilo') || 'tomato'; 
+    const producto = vinilos[viniloID] || vinilos['tomato']; 
 
-    // Rellenar datos en el HTML
   document.getElementById('productoTitulo').innerText = producto.titulo;
   document.getElementById('productoPrecio').innerText = producto.precio;
   document.getElementById('productoArtista').innerText = producto.artista;
@@ -263,9 +251,7 @@ Disponible en formatos CD y LP, el álbum es una profunda inmersión, tierna e i
   document.getElementById('productoDescripcion').innerText = producto.descripcion;
 
 
-    
-     // Rellenar datos en el main
-    productoTitulo.innerText = producto.titulo;
+        productoTitulo.innerText = producto.titulo;
     productoPrecio.innerText = producto.precio;
     productoArtista.innerText = producto.artista;
     productoImagen.src = producto.imagen;
@@ -273,17 +259,14 @@ Disponible en formatos CD y LP, el álbum es una profunda inmersión, tierna e i
     productoDescripcion.innerText = producto.descripcion;
 
 
-    // Abrir popup
     carritoBtn.addEventListener('click', () => {
       carritoPopup.classList.remove('hidden');
     });
 
-    // Cerrar popup
     cerrarCarrito.addEventListener('click', () => {
       carritoPopup.classList.add('hidden');
     });
 
-    // Cerrar al hacer clic fuera del popup
     carritoPopup.addEventListener('click', (e) => {
       if (e.target === carritoPopup) {
         carritoPopup.classList.add('hidden');
@@ -292,18 +275,16 @@ Disponible en formatos CD y LP, el álbum es una profunda inmersión, tierna e i
 
 
     window.addEventListener('load', () => {
-      header.style.backgroundColor = `rgba(80, 124, 200, 0)`; // Tailwind azul-500 rgb(59,130,246)
+      header.style.backgroundColor = `rgba(80, 124, 200, 0)`; 
     });
 
 
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
 
-      // Opacidad progresiva del header: de 0 a 1 en los primeros 200px
       const opacity = Math.min(scrollY / 300, 1);
       header.style.backgroundColor = `rgba(80, 124, 200, ${opacity})`;
 
-      // Rotación del logo proporcional al scroll: máximo 360° a 500px
       const rotation = Math.min(scrollY / 500 * 360, 360);
       logo.style.transform = `rotate(${rotation}deg)`;
     });
