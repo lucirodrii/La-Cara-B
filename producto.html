@@ -133,7 +133,7 @@
         <li><a href="#" class="hover:underline">Sobre Nosotros</a></li>
         <li><a href="#" class="hover:underline">Pedidos y Envíos</a></li>
         <li><a href="#" class="hover:underline">Aviso Legal</a></li>
-        <li><a href="#" class="hover:underline">Términos y Condiciones</a></li>
+        <li><a href="#" id="openLegal" class="hover:underline">Aviso Legal y Términos de Uso</a></li>
       </ul>
 
       <div class="flex flex-col md:flex-row items-center md:w-1/2 gap-4">
@@ -151,6 +151,65 @@
       rights reserved.</p>
   </footer>
 
+  <!-- MODAL AVISO LEGAL -->
+  <div id="legalModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+
+    <div class="relative bg-[#EAE8DC] max-w-2xl w-full mx-4 p-8 rounded-sm shadow-xl">
+
+      <button class="absolute top-4 right-4 text-2xl font-light hover:scale-110 transition close">
+        &times;
+      </button>
+
+      <h2 class="text-3xl mb-4 font-medium">Aviso Legal y Términos de Uso</h2>
+
+      <p class="text-lg mb-4">
+        <strong>Titular:</strong> Lucía Rodríguez<br>
+        <strong>Domicilio:</strong> Valencia, España<br>
+        <strong>Correo:</strong> luciarodriguezcuenca12@gmail.com
+      </p>
+
+      <p class="mb-6">
+        La Cara B es un proyecto académico que simula un comercio online. Este sitio web tiene
+        carácter demostrativo y no persigue fines comerciales.
+      </p>
+
+      <h3 class="text-xl font-semibold mb-2">Propiedad Intelectual</h3>
+      <p class="mb-4">
+        Todos los contenidos del sitio web se utilizan con fines educativos.
+      </p>
+
+      <h3 class="text-xl font-semibold mb-2">Condiciones de uso</h3>
+      <ul class="list-disc list-inside space-y-2">
+        <li>Uso con fines lícitos y educativos</li>
+        <li>Posibles enlaces externos sin responsabilidad</li>
+        <li>Uso de formularios implica aceptación de la política de privacidad</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const legalModal = document.getElementById("legalModal");
+    const openLegal = document.getElementById("openLegal");
+    const closeBtns = document.querySelectorAll(".close");
+
+    openLegal.addEventListener("click", e => {
+      e.preventDefault();
+      legalModal.classList.remove("hidden");
+    });
+
+    closeBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        legalModal.classList.add("hidden");
+      });
+    });
+
+    legalModal.addEventListener("click", e => {
+      if (e.target === legalModal) {
+        legalModal.classList.add("hidden");
+      }
+    });
+  </script>
+  
   <script>
     const header = document.getElementById('header');
     const logo = document.getElementById('logo');
@@ -251,7 +310,7 @@ Disponible en formatos CD y LP, el álbum es una profunda inmersión, tierna e i
   document.getElementById('productoDescripcion').innerText = producto.descripcion;
 
 
-        productoTitulo.innerText = producto.titulo;
+    productoTitulo.innerText = producto.titulo;
     productoPrecio.innerText = producto.precio;
     productoArtista.innerText = producto.artista;
     productoImagen.src = producto.imagen;
